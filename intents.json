@@ -1,0 +1,419 @@
+﻿{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Xin chào",
+        "Chào bạn",
+        "Có ai ở đây không?",
+        "Hello",
+        "Good day",
+        "Name",
+        "Tên bạn là gì",
+        "Tên mày là gì"
+      ],
+      "responses": [
+        "Xin chào, tôi là Phố! Có gì tôi có thể giúp bạn không?"
+      ]
+    },
+    {
+      "tag": "farewell",
+      "patterns": [
+        "Tạm biệt",
+        "Goodbye",
+        "Hẹn gặp lại",
+        "See you later"
+      ],
+      "responses": [
+        "Tạm biệt! Hẹn gặp lại bạn!",
+        "Chúc bạn một ngày tốt lành! Tạm biệt!",
+        "Hẹn gặp lại bạn sau! Tạm biệt!",
+        "Goodbye! Mong sớm gặp lại bạn!"
+      ]
+    },
+    {
+      "tag": "unanswerable",
+      "patterns": [
+        "Bạn không trả lời được câu hỏi này",
+        "Không hiểu",
+        "Tôi không biết",
+        "Bạn không thể giúp tôi"
+      ],
+      "responses": [
+        "Xin lỗi, có vẻ như tôi không thể trả lời câu hỏi này. Bạn có thể thử hỏi điều khác?",
+        "Rất tiếc, tôi không thể hiểu câu hỏi của bạn. Có gì khác tôi có thể hỗ trợ?",
+        "Hmm, có vẻ như câu hỏi này quá phức tạp đối với tôi. Bạn có thể đặt câu hỏi khác không?"
+      ]
+    },
+    {
+      "tag": "product_advice",
+      "patterns": [
+        "Tư vấn chọn sản phẩm",
+        "Cần tư vấn mua sản phẩm",
+        "Sản phẩm nào phù hợp với tôi?",
+        "Bạn nên chọn sản phẩm nào?"
+      ],
+      "responses": [
+        "Để tôi giúp bạn tư vấn sản phẩm, bạn có thể cho tôi biết một số tiêu chí hoặc loại sản phẩm bạn quan tâm không?"
+      ]
+    },
+    {
+      "tag": "create_account",
+      "patterns": [
+        "Tạo tài khoản",
+        "Làm thế nào để đăng ký tài khoản?",
+        "Đăng ký thành viên",
+        "Tôi muốn có tài khoản"
+      ],
+      "responses": [
+        "Để tạo tài khoản, bạn có thể truy cập trang đăng ký trên trang web của chúng tôi hoặc sử dụng ứng dụng di động nếu có."
+      ]
+    },
+    {
+      "tag": "purchase_advice",
+      "patterns": [
+        "Tư vấn mua hàng",
+        "Làm thế nào để mua sản phẩm?",
+        "Hướng dẫn mua sắm",
+        "Tôi muốn mua một thứ gì đó"
+      ],
+      "responses": [
+        "Để mua hàng, bạn có thể thêm sản phẩm vào giỏ hàng và tiếp tục quá trình thanh toán. Nếu có bất kỳ câu hỏi nào, hãy để tôi biết!"
+      ]
+    },
+    {
+      "tag": "order_placement",
+      "patterns": [
+        "Cách đặt hàng",
+        "Làm thế nào để đặt hàng?",
+        "Tôi muốn đặt hàng",
+        "Hướng dẫn đặt hàng"
+      ],
+      "responses": [
+        "Để đặt hàng, hãy chọn sản phẩm bạn muốn mua, thêm vào giỏ hàng và tiếp tục đến trang thanh toán. Bạn sẽ nhận được xác nhận sau khi hoàn tất quá trình đặt hàng."
+      ]
+    },
+    {
+      "tag": "delivery_method",
+      "patterns": [
+        "Hình thức giao hàng",
+        "Giao hàng như thế nào?",
+        "Làm thế nào để nhận hàng?",
+        "Giao hàng có phí không?"
+      ],
+      "responses": [
+        "Chúng tôi cung cấp nhiều phương thức giao hàng, bao gồm giao hàng tận nơi và các dịch vụ giao hàng nhanh. Phí giao hàng có thể phụ thuộc vào địa chỉ của bạn và phương thức bạn chọn."
+      ]
+    },
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Xin chào",
+        "Chào bạn",
+        "Có ai ở đây không?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Xin chào :-) Tôi là Daz!",
+        "Chào bạn, cảm ơn đã ghé thăm. Tôi là Daz!",
+        "Xin chào, tôi là Daz! Có gì tôi có thể giúp bạn không?",
+        "Xin chào, tôi là Daz! Bạn cần hỗ trợ gì?"
+      ]
+    },
+    {
+      "tag": "farewell",
+      "patterns": [
+        "Tạm biệt",
+        "Goodbye",
+        "Hẹn gặp lại",
+        "See you later"
+      ],
+      "responses": [
+        "Tạm biệt! Hẹn gặp lại bạn!",
+        "Chúc bạn một ngày tốt lành! Tạm biệt!",
+        "Hẹn gặp lại bạn sau! Tạm biệt!",
+        "Goodbye! Mong sớm gặp lại bạn!"
+      ]
+    },
+    {
+      "tag": "unanswerable",
+      "patterns": [
+        "Bạn không trả lời được câu hỏi này",
+        "Không hiểu",
+        "Tôi không biết",
+        "Bạn không thể giúp tôi"
+      ],
+      "responses": [
+        "Xin lỗi, có vẻ như tôi không thể trả lời câu hỏi này. Bạn có thể thử hỏi điều khác?",
+        "Rất tiếc, tôi không thể hiểu câu hỏi của bạn. Có gì khác tôi có thể hỗ trợ?",
+        "Hmm, có vẻ như câu hỏi này quá phức tạp đối với tôi. Bạn có thể đặt câu hỏi khác không?"
+      ]
+    },
+    {
+      "tag": "product_advice",
+      "patterns": [
+        "Tư vấn chọn sản phẩm",
+        "Cần tư vấn mua sản phẩm",
+        "Sản phẩm nào phù hợp với tôi?",
+        "Bạn nên chọn sản phẩm nào?"
+      ],
+      "responses": [
+        "Để tôi giúp bạn tư vấn sản phẩm, bạn có thể cho tôi biết một số tiêu chí hoặc loại sản phẩm bạn quan tâm không?"
+      ]
+    },
+    {
+      "tag": "create_account",
+      "patterns": [
+        "Tạo tài khoản",
+        "Làm thế nào để đăng ký tài khoản?",
+        "Đăng ký thành viên",
+        "Tôi muốn có tài khoản"
+      ],
+      "responses": [
+        "Để tạo tài khoản, bạn có thể truy cập trang đăng ký trên trang web của chúng tôi hoặc sử dụng ứng dụng di động nếu có."
+      ]
+    },
+    {
+      "tag": "purchase_advice",
+      "patterns": [
+        "Tư vấn mua hàng",
+        "Làm thế nào để mua sản phẩm?",
+        "Hướng dẫn mua sắm",
+        "Tôi muốn mua một thứ gì đó"
+      ],
+      "responses": [
+        "Để mua hàng, bạn có thể thêm sản phẩm vào giỏ hàng và tiếp tục quá trình thanh toán. Nếu có bất kỳ câu hỏi nào, hãy để tôi biết!"
+      ]
+    },
+    {
+      "tag": "order_placement",
+      "patterns": [
+        "Cách đặt hàng",
+        "Làm thế nào để đặt hàng?",
+        "Tôi muốn đặt hàng",
+        "Hướng dẫn đặt hàng"
+      ],
+      "responses": [
+        "Để đặt hàng, hãy chọn sản phẩm bạn muốn mua, thêm vào giỏ hàng và tiếp tục đến trang thanh toán. Bạn sẽ nhận được xác nhận sau khi hoàn tất quá trình đặt hàng."
+      ]
+    },
+    {
+      "tag": "delivery_method",
+      "patterns": [
+        "Hình thức giao hàng",
+        "Giao hàng như thế nào?",
+        "Làm thế nào để nhận hàng?",
+        "Giao hàng có phí không?"
+      ],
+      "responses": [
+        "Chúng tôi cung cấp nhiều phương thức giao hàng, bao gồm giao hàng tận nơi và các dịch vụ giao hàng nhanh. Phí giao hàng có thể phụ thuộc vào địa chỉ của bạn và phương thức bạn chọn."
+      ]
+    },
+    {
+      "tag": "custom_intent",
+      "patterns": [
+        "Câu hỏi của bạn",
+        "Câu hỏi tùy chỉnh",
+        "Bạn biết gì về...",
+        "Tôi cần tư vấn về ..."
+      ],
+      "responses": [
+        "Tôi sẽ cố gắng giúp bạn tốt nhất có thể với câu hỏi của bạn. Hãy cho tôi biết thêm chi tiết."
+      ]
+    },
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Xin chào",
+        "Chào bạn",
+        "Có ai ở đây không?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Xin chào! Tôi là trợ lý ảo của cửa hàng. Có gì tôi có thể giúp bạn?"
+      ]
+    },
+    {
+      "tag": "farewell",
+      "patterns": [
+        "Tạm biệt",
+        "Goodbye",
+        "Hẹn gặp lại",
+        "See you later"
+      ],
+      "responses": [
+        "Tạm biệt! Nếu bạn có thêm câu hỏi, hãy quay lại bất cứ lúc nào."
+      ]
+    },
+    {
+      "tag": "unanswerable",
+      "patterns": [
+        "Bạn không trả lời được câu hỏi này",
+        "Không hiểu",
+        "Tôi không biết",
+        "Bạn không thể giúp tôi"
+      ],
+      "responses": [
+        "Rất tiếc vì sự bất tiện. Có thể bạn muốn thử đặt câu hỏi khác?"
+      ]
+    },
+    {
+      "tag": "product_advice",
+      "patterns": [
+        "Tư vấn chọn sản phẩm",
+        "Cần tư vấn mua sản phẩm",
+        "Sản phẩm nào phù hợp với tôi?",
+        "Bạn nên chọn sản phẩm nào?"
+      ],
+      "responses": [
+        "Tất nhiên! Bạn có thể cho tôi biết một số tiêu chí hoặc loại sản phẩm bạn quan tâm không?"
+      ]
+    },
+    {
+      "tag": "create_account",
+      "patterns": [
+        "Tạo tài khoản",
+        "Làm thế nào để đăng ký tài khoản?",
+        "Đăng ký thành viên",
+        "Tôi muốn có tài khoản"
+      ],
+      "responses": [
+        "Để tạo tài khoản, bạn có thể truy cập trang đăng ký trên trang web của chúng tôi hoặc sử dụng ứng dụng di động nếu có."
+      ]
+    },
+    {
+      "tag": "purchase_advice",
+      "patterns": [
+        "Tư vấn mua hàng",
+        "Làm thế nào để mua sản phẩm?",
+        "Hướng dẫn mua sắm",
+        "Tôi muốn mua một thứ gì đó"
+      ],
+      "responses": [
+        "Để mua hàng, bạn có thể thêm sản phẩm vào giỏ hàng và tiếp tục quá trình thanh toán. Nếu có bất kỳ câu hỏi nào, hãy để tôi biết!"
+      ]
+    },
+    {
+      "tag": "order_placement",
+      "patterns": [
+        "Cách đặt hàng",
+        "Làm thế nào để đặt hàng?",
+        "Tôi muốn đặt hàng",
+        "Hướng dẫn đặt hàng"
+      ],
+      "responses": [
+        "Để đặt hàng, hãy chọn sản phẩm bạn muốn mua, thêm vào giỏ hàng và tiếp tục đến trang thanh toán. Bạn sẽ nhận được xác nhận sau khi hoàn tất quá trình đặt hàng."
+      ]
+    },
+    {
+      "tag": "delivery_method",
+      "patterns": [
+        "Hình thức giao hàng",
+        "Giao hàng như thế nào?",
+        "Làm thế nào để nhận hàng?",
+        "Giao hàng có phí không?"
+      ],
+      "responses": [
+        "Chúng tôi cung cấp nhiều phương thức giao hàng, bao gồm giao hàng tận nơi và các dịch vụ giao hàng nhanh. Phí giao hàng có thể phụ thuộc vào địa chỉ của bạn và phương thức bạn chọn."
+      ]
+    },
+    {
+      "tag": "custom_intent",
+      "patterns": [
+        "Câu hỏi của bạn",
+        "Câu hỏi tùy chỉnh",
+        "Bạn biết gì về...",
+        "Tôi cần tư vấn về ..."
+      ],
+      "responses": [
+        "Tôi sẽ cố gắng giúp bạn tốt nhất có thể với câu hỏi của bạn. Hãy cho tôi biết thêm chi tiết."
+      ]
+    },
+    {
+      "tag": "promotion",
+      "patterns": [
+        "Có khuyến mãi gì không?",
+        "Tôi muốn giảm giá",
+        "Mã giảm giá",
+        "Khuyến mãi hôm nay là gì?"
+      ],
+      "responses": [
+        "Chúng tôi có nhiều chương trình khuyến mãi hấp dẫn. Bạn có thể kiểm tra trang web hoặc ứng dụng di động để biết thông tin chi tiết."
+      ]
+    },
+    {
+      "tag": "return_policy",
+      "patterns": [
+        "Chính sách đổi trả",
+        "Làm thế nào để đổi trả?",
+        "Tôi muốn trả sản phẩm",
+        "Bảo hành sản phẩm"
+      ],
+      "responses": [
+        "Chính sách đổi trả của chúng tôi cho phép bạn đổi hoặc trả sản phẩm trong vòng một khoảng thời gian nhất định sau khi nhận hàng. Bạn có thể xem chi tiết trên trang web hoặc liên hệ với chúng tôi để biết thêm thông tin."
+      ]
+    },
+    {
+      "tag": "payment_method",
+      "patterns": [
+        "Phương thức thanh toán",
+        "Làm thế nào để thanh toán?",
+        "Tôi muốn thanh toán",
+        "Thẻ tín dụng hay chuyển khoản?"
+      ],
+      "responses": [
+        "Chúng tôi chấp nhận nhiều phương thức thanh toán, bao gồm thẻ tín dụng, chuyển khoản ngân hàng và ví điện tử. Bạn có thể chọn phương thức phù hợp khi thanh toán."
+      ]
+    },
+    {
+      "tag": "order_status",
+      "patterns": [
+        "Tình trạng đơn hàng",
+        "Làm thế nào để kiểm tra đơn hàng?",
+        "Đơn hàng của tôi ở đâu?",
+        "Cập nhật đơn hàng gần đây nhất"
+      ],
+      "responses": [
+        "Để kiểm tra tình trạng đơn hàng, bạn có thể đăng nhập vào tài khoản của mình trên trang web hoặc ứng dụng di động. Bạn cũng có thể liên hệ trực tiếp với chúng tôi để được hỗ trợ."
+      ]
+    },
+    {
+      "tag": "discount",
+      "patterns": [
+        "Có mã giảm giá không?",
+        "Làm thế nào để sử dụng mã giảm giá?",
+        "Mã giảm giá của tôi còn hiệu lực không?",
+        "Tôi muốn giảm giá cho đơn hàng"
+      ],
+      "responses": [
+        "Bạn có thể nhập mã giảm giá của mình khi thanh toán để nhận ưu đãi. Hãy kiểm tra hạn sử dụng và điều kiện áp dụng của mã giảm giá."
+      ]
+    },
+    {
+      "tag": "customer_support",
+      "patterns": [
+        "Tôi cần hỗ trợ",
+        "Làm thế nào để liên hệ với bộ phận hỗ trợ?",
+        "Gặp vấn đề với đơn hàng",
+        "Cần giúp đỡ"
+      ],
+      "responses": [
+        "Chúng tôi luôn sẵn sàng hỗ trợ bạn. Bạn có thể liên hệ với bộ phận hỗ trợ qua trang web hoặc thông tin liên hệ được cung cấp trên ứng dụng di động."
+      ]
+    },
+    {
+      "tag": "product_availability",
+      "patterns": [
+        "Sản phẩm này còn không?",
+        "Còn hàng không?",
+        "Làm thế nào để kiểm tra tình trạng tồn kho?",
+        "Có thông báo khi sản phẩm này có hàng không?"
+      ],
+      "responses": [
+        "Bạn có thể kiểm tra tình trạng tồn kho trực tiếp trên trang web hoặc ứng dụng di động của chúng tôi. Nếu sản phẩm tạm thời hết hàng, bạn có thể đăng ký nhận thông báo khi có hàng trở lại."
+      ]
+    }
+  ]
+}
