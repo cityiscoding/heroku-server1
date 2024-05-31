@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-import random
+import tensorflow as tf
 import json
 import numpy as np
+import random
 from keras.models import load_model
-import nltk
 from nltk.stem import WordNetLemmatizer
-import pickle
+import nltk
 
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -16,9 +15,8 @@ app = FastAPI()
 
 # Cấu hình CORS
 origins = [
-    "http://localhost",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000"
+    "https://pallmall.shop",  # Thêm nguồn gốc của bạn
+    "http://pallmall.shop"    # Bao gồm cả HTTP và HTTPS nếu cần
 ]
 
 app.add_middleware(
@@ -31,13 +29,9 @@ app.add_middleware(
 
 lemmatizer = WordNetLemmatizer()
 model = load_model('chatbot_model.keras')
-
 intents = json.loads(open('intents.json', encoding='utf-8-sig').read())
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
-
-class Message(BaseModel):
-    msg: str
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
@@ -52,7 +46,7 @@ def bow(sentence, words, show_details=True):
             if w == s:
                 bag[i] = 1
                 if show_details:
-                    print(f"Found in bag: {w}")
+                    print(f"Tìm thấy trong bag: {w}") 
     return np.array(bag)
 
 def predict_class(sentence, model):
@@ -79,7 +73,8 @@ def getResponse(ints, intents_json):
     return result
 
 @app.post("/chat/")
-async def chat_response(message: Message):
-    ints = predict_class(message.msg, model)
+async def chat(input_data: dict):
+    msg = input_data.get("msg")
+    ints = predict_class(msg, model)
     res = getResponse(ints, intents)
     return {"response": res}
