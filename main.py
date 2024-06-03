@@ -7,7 +7,7 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 from fastapi.middleware.cors import CORSMiddleware
-import tensorflow as tf
+from keras.models import load_model
 
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -15,11 +15,8 @@ nltk.download('wordnet')
 # Initialize lemmatizer
 lemmatizer = WordNetLemmatizer()
 
-# Load TensorFlow Lite model
-interpreter = tf.lite.Interpreter(model_path="chatbot_model.tflite")
-interpreter.allocate_tensors()
-
-# Load other data
+# Load trained model and other data
+model = load_model("chatbot_model.keras")
 with open("intents.json", "r", encoding="utf-8-sig") as file:
     intents = json.load(file)
 words = pickle.load(open("words.pkl", "rb"))
@@ -27,7 +24,7 @@ classes = pickle.load(open("classes.pkl", "rb"))
 
 app = FastAPI()
 
-# Cấu hình CORS
+# Configure CORS
 origins = [
     "https://localhost:80/",
     "http://localhost/",
@@ -64,16 +61,12 @@ def bow(sentence, words, show_details=True):
             if w == s:
                 bag[i] = 1
                 if show_details:
-                    print(f"Tìm thấy trong bag: {w}") 
+                    print(f"Found in bag: {w}") 
     return np.array(bag)
 
 def predict_class(sentence):
     bow_sentence = bow(sentence, words, show_details=False)
-    input_details = interpreter.get_input_details()
-    output_details = interpreter.get_output_details()
-    interpreter.set_tensor(input_details[0]['index'], [bow_sentence])
-    interpreter.invoke()
-    res = interpreter.get_tensor(output_details[0]['index'])[0]
+    res = model.predict(np.array([bow_sentence]))[0]
     ERROR_THRESHOLD = 0.15
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)
@@ -91,7 +84,7 @@ def getResponse(ints, intents_json):
                 result = random.choice(i['responses'])
                 break
     else:
-        result = "Tôi không hiểu ý bạn. Bạn có thể hỏi lại không?"
+        result = "I am sorry, I do not understand your question. Can you please ask again?"
     return result
 
 class Message(BaseModel):
