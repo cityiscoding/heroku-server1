@@ -3,11 +3,11 @@ import json
 import random
 from fastapi import FastAPI
 from pydantic import BaseModel
-from tensorflow.keras.models import load_model
 import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 from fastapi.middleware.cors import CORSMiddleware
+import tensorflow as tf
 
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -15,8 +15,11 @@ nltk.download('wordnet')
 # Initialize lemmatizer
 lemmatizer = WordNetLemmatizer()
 
-# Load trained model and other data
-model = load_model("chatbot_model.keras")
+# Load TensorFlow Lite model
+interpreter = tf.lite.Interpreter(model_path="chatbot_model.tflite")
+interpreter.allocate_tensors()
+
+# Load other data
 with open("intents.json", "r", encoding="utf-8-sig") as file:
     intents = json.load(file)
 words = pickle.load(open("words.pkl", "rb"))
@@ -26,9 +29,9 @@ app = FastAPI()
 
 # Cấu hình CORS
 origins = [
-    "https://localhost:80/",  # Thêm nguồn gốc của bạn
+    "https://localhost:80/",
     "http://localhost/",
-    "http://localhost",  
+    "http://localhost",
     "http://localhost:8080",
     "http://localhost:80",
     "http://localhost/*",
@@ -37,15 +40,15 @@ origins = [
     "https://pallmall.shop",
     "http://pallmall.shop",
     "https://pallmall.shop/*",
-    "http://pallmall.shop/*"     # Bao gồm cả HTTP và HTTPS nếu cần
+    "http://pallmall.shop/*"
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Cho phép tất cả các phương thức HTTP
-    allow_headers=["*"],  # Cho phép tất cả các headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 def clean_up_sentence(sentence):
@@ -64,9 +67,13 @@ def bow(sentence, words, show_details=True):
                     print(f"Tìm thấy trong bag: {w}") 
     return np.array(bag)
 
-def predict_class(sentence, model):
+def predict_class(sentence):
     bow_sentence = bow(sentence, words, show_details=False)
-    res = model.predict(np.array([bow_sentence]))[0]
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+    interpreter.set_tensor(input_details[0]['index'], [bow_sentence])
+    interpreter.invoke()
+    res = interpreter.get_tensor(output_details[0]['index'])[0]
     ERROR_THRESHOLD = 0.15
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)
@@ -93,6 +100,6 @@ class Message(BaseModel):
 @app.post("/chat/")
 async def chat(input_data: Message):
     msg = input_data.msg
-    ints = predict_class(msg, model)
+    ints = predict_class(msg)
     res = getResponse(ints, intents)
     return {"response": res}
