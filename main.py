@@ -1,37 +1,52 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-import tensorflow as tf
+import pickle
 import json
-import numpy as np
 import random
-from keras.models import load_model
-from nltk.stem import WordNetLemmatizer
+from fastapi import FastAPI
+from pydantic import BaseModel
+from tensorflow.keras.models import load_model
+import numpy as np
 import nltk
+from nltk.stem import WordNetLemmatizer
+from fastapi.middleware.cors import CORSMiddleware
 
 nltk.download('punkt')
 nltk.download('wordnet')
+
+# Initialize lemmatizer
+lemmatizer = WordNetLemmatizer()
+
+# Load trained model and other data
+model = load_model("chatbot_model.keras")
+with open("intents.json", "r", encoding="utf-8-sig") as file:
+    intents = json.load(file)
+words = pickle.load(open("words.pkl", "rb"))
+classes = pickle.load(open("classes.pkl", "rb"))
 
 app = FastAPI()
 
 # Cấu hình CORS
 origins = [
-    "https://pallmall.shop",  # Thêm nguồn gốc của bạn
-    "http://pallmall.shop"    # Bao gồm cả HTTP và HTTPS nếu cần
+    "https://localhost:80/",  # Thêm nguồn gốc của bạn
+    "http://localhost/",
+    "http://localhost",  
+    "http://localhost:8080",
+    "http://localhost:80",
+    "http://localhost/*",
+    "https://pallmall.shop/*",
+    "http://pallmall.shop/",
+    "https://pallmall.shop",
+    "http://pallmall.shop",
+    "https://pallmall.shop/*",
+    "http://pallmall.shop/*"     # Bao gồm cả HTTP và HTTPS nếu cần
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Cho phép tất cả các phương thức HTTP
+    allow_headers=["*"],  # Cho phép tất cả các headers
 )
-
-lemmatizer = WordNetLemmatizer()
-model = load_model('chatbot_model.keras')
-intents = json.loads(open('intents.json', encoding='utf-8-sig').read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
@@ -72,9 +87,12 @@ def getResponse(ints, intents_json):
         result = "Tôi không hiểu ý bạn. Bạn có thể hỏi lại không?"
     return result
 
+class Message(BaseModel):
+    msg: str
+
 @app.post("/chat/")
-async def chat(input_data: dict):
-    msg = input_data.get("msg")
+async def chat(input_data: Message):
+    msg = input_data.msg
     ints = predict_class(msg, model)
     res = getResponse(ints, intents)
     return {"response": res}
